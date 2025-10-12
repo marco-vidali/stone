@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# --- Checks ---
+if [ -z "$1" ]; then
+    echo "Error: The interface name is missing. Please provide it in the configuration file."
+    exit 1
+fi
+
 # --- Variables ---
 INTERFACE=$1
 MDK3_CONF_FILE="/tmp/mdk3_beacon_ssid.txt"
