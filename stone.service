@@ -1,0 +1,16 @@
+[Unit]
+Description=Stone
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/stone
+ExecStart=/bin/bash -c "exec /bin/bash /opt/stone/start.sh >> /var/log/stone.log 2>&1"
+Restart=always
+RestartSec=10
+StartLimitBurst=5
+StartLimitIntervalSec=60
+
+[Install]
+WantedBy=multi-user.target
