@@ -45,10 +45,7 @@ PHRASES=(
 NUM_PHRASES=${#PHRASES[@]}
 
 # --- Configuration ---
-ip link set $INTERFACE down
-iw dev $INTERFACE set type monitor
-ip link set $INTERFACE up
-
+airmon-ng check kill
 airmon-ng start ${INTERFACE}
 
 > "$MDK3_CONF_FILE"
